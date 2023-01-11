@@ -1,0 +1,253 @@
+
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 p-0">
+                    <div class="categories__item categories__large__item set-bg"
+                    data-setbg="img/categories/category-1.jpg">
+                    <div class="categories__text">
+                        <h1>Change Steps With us..</h1>
+                        <p><h6>Be well dressed, behave like a gentleman, and keep your shoes shined..</h6></p>
+                        <a href="/shope">Shop now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="img/categories/category-2.jpg">
+                            <div class="categories__text"><br>
+                                <h4>Men’s fashion</h4>
+                                {{!-- <p>358 items</p> --}}
+                                <a href="/shope">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="img/categories/category-3.jpg">
+                            <div class="categories__text"><br>
+                                <h4>Women’s fashion</h4>
+                                {{!-- <p>273 items</p> --}}
+                                <a href="/shope">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="img/categories/category-4.jpg">
+                            <div class="categories__text"><br>
+                                <h4>Kid's fashion</h4>
+                                {{!-- <p>159 items</p> --}}
+                                <a href="/shope">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="img/categories/category-5.jpg">
+                            <div class="categories__text"><br>
+                                <h4>Sports</h4>
+                                {{!-- <p>792 items</p> --}}
+                                <a href="/shope">Shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="section-title">
+                    <h4>New product</h4>
+                </div>
+            </div>
+          
+        </div>
+        
+       <div class="row property__gallery">
+        {{#each products}}
+        <div class="col-lg-3 col-md-4 col-sm-6 mix {{this.category}}">
+            <div class="product__item">
+                <div class="product__item__pic set-bg" data-setbg="/product-images/{{this._id}}1.jpg">
+                    <div class="label new">New</div>
+                    <ul class="product__hover">
+                        <li><a href="/product-images/{{this._id}}1.jpg" class="image-popup"><span
+                                    class="arrow_expand"></span></a></li>
+                        <li><a><span class="icon_heart_alt" id="{{this.id}}"
+                                    onclick="addTowishlist('{{this._id}}')"></span></a></li>
+                        <li><a><span class="icon_bag_alt" onclick="addToCart('{{this._id}}')"></span></a></li>
+                    </ul>
+                </div>
+                <div class="product__item__text">
+                    <h6><a href="/product/{{this._id}}">{{this.name}}</a></h6>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="product__price">{{#if actualPrice}}₹ {{this.Amount}}<span> <del>₹ {{this.actualPrice}}</del></span>{{else}}₹ {{this.Amount}}{{/if}}
+                      {{#if proOfferPercentage}}
+                        <p class="text-secondary">{{proOfferPercentage}}<small>%off</small></p>
+                        {{/if}}
+                         {{#if catOfferPercentage}}
+                         <p class="text-secondary">{{catOfferPercentage}}<small>%off</small></p>
+                         {{/if}}
+                                
+                                
+                    </div>
+                     
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+            </section>
+          
+ 
+
+<!-- Product Section End -->
+
+ <!-- Banner Section Begin -->
+<section class="banner set-bg" data-setbg="img/banner/banner-1.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-7 col-lg-8 m-auto">
+                <div class="banner__slider owl-carousel">
+                    <div class="banner__item">
+                        <div class="banner__text">
+                            <span >The Chloe Collection</span>
+                            <h1 style="color: white;">Walk Freely with us..</h1>
+                            <a href="/shop">Shop now</a>
+                        </div>
+                    </div>
+                    <div class="banner__item">
+                        <div class="banner__text">
+                            <span>The Chloe Collection</span>
+                            <h1 style="color: white;">If The Shoes FIts..</h1>
+                            <a href="/shop">Shop now</a>
+                        </div>
+                    </div>
+                    <div class="banner__item">
+                        <div class="banner__text">
+                            <span>The Chloe Collection</span>
+                            <h1 style="color: white;">Make New Steps..</h1>
+                            <a href="/shop">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+<!-- Banner Section End -->
+
+
+
+<!-- Services Section Begin -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-car"></i>
+                    <h6>Free Shipping</h6>
+                    <p>For all oders</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-money"></i>
+                    <h6>Money Back Guarantee</h6>
+                    <p>If good have Problems</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-support"></i>
+                    <h6>Online Support 24/7</h6>
+                    <p>Dedicated support</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-headphones"></i>
+                    <h6>Payment Secure</h6>
+                    <p>100% secure payment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+
+
+     <script>
+            function addToCart(proId){
+$.ajax({
+    url:'/addToCart/'+proId,
+    method:'get',
+    success:(response)=>{
+        if(response.status){
+            let count=$('#cart-count,#cart-count2').html()
+            count=parseInt(count)+1
+            $("#cart-count,#cart-count2").html(count)
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Added To Cart',
+            showConfirmButton: false,
+            timer: 1500
+
+})
+ }else{
+            location.href='/login'
+
+        }
+        }
+})
+}
+
+
+function addTowishlist(proId) {
+    console.log('wishlist function called')   
+    $.ajax({
+        url: '/addToWishlist/' + proId,
+        method: 'get',
+        success: (response) => {
+            console.log(response)
+            if(response.status){
+                let count = $('#wish-count').html()
+                count = parseInt(count) + 1
+                $('#wish-count').html(count)
+                swal.fire({
+                    icon: "success",
+                    title: "Item Added To wishlist",
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+
+            }else{
+                let count = $('#wish-count').html()
+                count = parseInt(count) - 1
+                $('#wish-count').html(count)
+                swal.fire({
+                    icon: "success",
+                    title: "Item Removed from wishlist",
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }
+        }
+    })
+}
+
+
+ </script>

@@ -1,0 +1,237 @@
+
+
+<div class="header bg-gradient-primary col-m  pt-md-8 mb-5">
+    <div class="container ">
+        <div class="header-body">
+            <!-- Navbar -->
+            <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+                <div class="container-fluid">
+                    <!-- Brand -->
+                    <a class="h4 mb-1 text-white text-uppercase d-none d-lg-inline-block" href="/admin">Products</a>
+                    <!-- Form -->
+                   
+                    <!-- User -->
+                    <ul class="navbar-nav align-items-center d-none d-md-flex">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <div class="media align-items-center">
+                                            <span class="avatar avatar-sm rounded-circle">
+                                                <img alt="Image placeholder" src="/svg/icons8-administrator-male-48.png">
+                                            </span>
+                                            <div class="media-body ml-2 d-none d-lg-block">
+                                                <span class="mb-0 text-sm  font-weight-bold">{{adminData.name}}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                                       <div class="dropdown-divider"></div>
+                                        <a href="/admin/adminLogout" class="dropdown-item">
+                                            <i class="ni ni-user-run"></i>
+                                            <span>Logout</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+    </div>
+</div>
+<!-- End Header -->
+<div class="container-fluid">
+    <!-- Table -->
+    <div class="row mt-5">
+
+
+
+
+        <div class="col">
+            <div >
+                {{!-- <h3 class="mb-0">Product Details</h3> --}}
+
+                <a href="/admin/add-Product" class="btn btn-success ml-auto m-3 mr-4">Add Product</a>
+
+
+
+
+
+
+                <div class="table-responsive" "table table-hover">
+                    <table class="table align-items-center table-flush" id="#myTable">
+                        <thead class="thead-light">
+                            <tr>
+                                {{!-- <th scope="col"><b>No</b></th> --}}
+                                <th scope="col"><b></b>No.</b></th>
+                                <th scope="col"><b>Image</b></th>
+                                <th scope="col"><b>Name</b></th>
+                                {{!-- <th scope="col"><b></b>Description</b></th> --}}
+                                <th scope="col"><b>Category</b></th>
+                                <th scope="col"><b>Price</b></th>
+                                <th scope="col"><b>Stock</b></th>
+                                <th scope="col"><b>Option</b></th>
+                                
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {{#each products}}
+                            <tr>
+                                
+                                <td scope="row">
+                                    <p>{{inc @index}}</p>
+                                </td>
+                               
+
+                                <td scope="row">
+                                    <p class="avatar rounded-circle mr-3">
+                                        <img alt="Image placeholder" src="/product-images/{{this._id}}1.jpg"
+                                            alt="shoes"
+                                    </p>
+
+                                </td>
+                                <td>
+                                    <span class="badge badge-dot ">
+                                        <i class="bg-warning"></i><b>{{this.name}}</b>
+                                    </span>
+                                </td>
+                                {{!-- <td>
+                                    <span class=" ">
+                                        <i class="bg-warning"></i><b>{{this.Description}}</b>
+                                    </span>
+                                </td> --}}
+                                <td>
+
+                                    <span class="">
+                                        <i class="bg-warning"></i><b>{{this.category}}</b>
+                                    </span>
+
+
+                                </td>
+
+                                <td>
+                                    <span class=" ">
+                                        <p><b>{{this.Amount}}</b></p>
+                                    </span>
+                                </td>
+                                <td>
+                                    <p><b>{{this.Stock}}</b></p>
+                                </td>
+                                <td class="text-right">
+                                   
+                                            <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary"
+                                                id="editButton">EDIT</a>
+                                                {{#if this.Disable}}
+                                            <a href="/admin/active-product/{{this._id}}"   class="btn btn-success" onclick="activeAlert(event)"
+                                                 id="deleteButton">Enable</a>
+                                              {{else}}
+                                            <a href="/admin/delete-product/{{this._id}}"   class="btn btn-danger" onclick="deleteAlert(event)"
+                                                 id="deleteButton">Disable</a>
+                                                 {{/if}}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {{/each}}
+                    </table>
+                     <div class="card-footer py-4">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">
+                                    <i class="fas fa-angle-left"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/viewProduct">1</a>
+                            </li>
+                        
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/viewProduct2">2 <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                          
+                         
+                           
+                            <li class="page-item"><a class="page-link" href="/admin/viewProduct3">3</a></li>
+
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <i class="fas fa-angle-right"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+ <script src="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"></script>
+ <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+ <script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+ </script>
+    <script>
+        function deleteAlert(event) {
+            event.preventDefault();
+            var link = event.currentTarget.href;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: " Do You want to Disable this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes,.!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Disabled!',
+                        'Product was Disabled.',
+                        'success'
+                    )
+                    window.location = link;
+                } else {
+                    return false
+
+                }
+            })
+        }
+
+        function activeAlert(event) {
+            event.preventDefault();
+            var link = event.currentTarget.href;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: " Do You want to Enable this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes,.!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Enabled!',
+                        'Product was Enabled.',
+                        'success'
+                    )
+                    window.location = link;
+                } else {
+                    return false
+
+                }
+            })
+        }
+    </script>
+

@@ -1,0 +1,141 @@
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+
+
+<div class="header bg-gradient-primary col-m  pt-md-8 mb-5">
+    <div class="container ">
+        <div class="header-body">
+            <!-- Navbar -->
+            <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+                <div class="container-fluid">
+                    <!-- Brand -->
+                    <a class="h4 mb-1 text-white text-uppercase d-none d-lg-inline-block" href="/admin">Products</a>
+                    <!-- Form -->
+                    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                     
+                    </form>
+                    <!-- User -->
+                   <ul class="navbar-nav align-items-center d-none d-md-flex">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <div class="media align-items-center">
+                                            <span class="avatar avatar-sm rounded-circle">
+                                                <img alt="Image placeholder" src="/svg/icons8-administrator-male-48.png">
+                                            </span>
+                                            <div class="media-body ml-2 d-none d-lg-block">
+                                                <span class="mb-0 text-sm  font-weight-bold">{{adminData.name}}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                                       <div class="dropdown-divider"></div>
+                                        <a href="/admin/adminLogout" class="dropdown-item">
+                                            <i class="ni ni-user-run"></i>
+                                            <span>Logout</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{{!-- <link href="/assets/css/bootstrap-2.min.css" rel="stylesheet"> --}}
+
+<!-- Template Stylesheet -->
+<link href="/assets/css/style3.css" rel="stylesheet">
+<div class="container-fluid position-relative d-flex p-0">
+    {{!-- <div class="content">
+        <div class="bg-secondary"> --}}
+            <div class="container mr-0">
+                <div class="row">
+                    <div class="col-12 col-lg-12 mt-1">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-0"><u><b>SALES REPORT</b></u></p>
+                            </div>
+                        </div>
+                        
+                        {{!-- <input type="search" id="myInput" class="form-control w-50 bg-border-dark border-2x mt-4 rounded-pill" placeholder="Type query" aria-label="Search" /> --}}
+                        <table class="table text-center" id="example">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">OrderID</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Contact</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                {{#each allOrders}}
+                                <tr>
+                                    <th scope="row" class="fs-bold">{{inc @index}}</th>
+                                    <td>{{this._id}}</td>
+                                    <td>{{this.date}}</td>
+                                    <td>{{this.deliveryDetails.fisrtName}} </td>
+                                    <td>{{this.totalAmount}}</td>
+                                    <td>{{this.paymentMethod}}</td>
+                                    <td>{{this.status}}</td>
+                                    <td>{{this.deliveryDetails.number}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+{{!-- datatable js --}}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+    $('#example').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "searching" : true,
+        "paging": true,
+        'ordering':false,
+        'info':false
+    });
+});
+</script>

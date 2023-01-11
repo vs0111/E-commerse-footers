@@ -1,0 +1,83 @@
+<section class="checkout spad">
+  <div class="container">
+    <div class="row">
+      {{! <div class="col-lg-12">
+                <h6 class="coupon__link"><span class="icon_tag_alt"></span> <a href="#">Have a coupon?</a> Click
+                    here to enter your code.</h6>
+            </div> }}
+    </div>
+    <form
+      action="/addAddress"
+      class="checkout__form"
+      id="checkoutform"
+      method="post"
+    >
+      <div class="row">
+        <div class="col-lg-8">
+          <h5>Billing detail</h5>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="checkout__form__input">
+                <p>First Name <span>*</span></p>
+                <input type="text" name="fname" required="required" />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="checkout__form__input">
+                <p>Last Name <span>*</span></p>
+                <input type="text" name="lname" />
+              </div>
+            </div>
+            <div class="col-lg-12">
+
+              <div class="checkout__form__input">
+                <p>Address <span>*</span></p>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Street Address"
+                />
+              </div>
+              <div class="checkout__form__input">
+                <p> Town/City<span>*</span></p>
+                <input type="text" name="Place" />
+              </div>
+
+              <div class="checkout__form__input">
+                <p>District<span>*</span></p>
+                <input type="text" name="District" />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="checkout__form__input">
+                <p>Pincode<span>*</span></p>
+                <input type="text" name="Pincode" />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="checkout__form__input">
+                <p>Phone Number<span>*</span></p>
+                <input type="text" name="Number" />
+                <input
+                  type="text"
+                  name="userId"
+                  id=""
+                  value="{{user._id}}"
+                  hidden
+                />
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="checkout__form__checkbox">
+                <button type="submit" class="site-btn mt-4">Save Address</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,284 @@
+<style>
+  .error { color: red; }
+</style>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+  integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-6 text-center">
+        <div
+          class="rounded mt-5"
+          style="width: 85%; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 10px 0px rgba(239, 239, 239, 0.75);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);"
+        >
+          <div class="d-flex">
+
+            <div class="">
+
+              <img
+                src="/svg/icons8-administrator-male-48.png"
+                {{!--
+                                {{!-- /assets/product-images/{{this._id}}.jpg --}}
+                style="    height: 200px;
+    width: 200px;
+    border-radius: 15px;
+    margin-left: 29px;
+    margin-top: 16px;
+};"
+                alt="pic"
+              />
+            </div>
+            <div class="mx-5 mt-5">
+              <h2><b><br />
+                  {{oneUser.name}}</b></h2>
+            </div>
+
+          </div>
+          <div style="margin-top: 33px;">
+            <div>
+              <a href="#">
+                <p class="btn btn-dark w-75"><b>Wallet :{{#if walletHistory}}
+                      ₹
+                      {{walletHistory}}
+                    {{else}} 0.0{{/if}}</b></p></a>
+              <div
+                class="changeProfile text-center border border-3 rounded w-75 ms-5"
+                style="display: none; margin: 58px;    width: 77%!important;"
+              >
+                <form
+                  action="/edit-profile/{{users._id}}"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <input
+                    type="file"
+                    class="text-center border"
+                    name="profileImg"
+                    placeholder="imgae"
+                    required
+                  />
+                  <input
+                    type="text"
+                    class="mt-3 text-center border"
+                    name="Name"
+                    value="{{users.Name}}"
+                    style="height: 40px;border-radius: 20px;"
+                    required
+                  /><br /><br />
+                  <input
+                    type="submit"
+                    value="UPDATE"
+                    class="btn btn-dark text-bold"
+                  />
+                </form><br />
+              </div><br />
+            </div>
+           
+            <a class="btn btn-dark w-75 mb-3" href="/orderHistory"><b>MY ORDERS</b></a>
+
+          </div>
+        </div><br /><br />
+      </div>
+      <div class="col-12 col-md-6 col-lg-6">
+        <div
+          class="rounded mt-5"
+          style="width: 80%; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);"
+        >
+          <div style="padding-top: 30px;">
+            <h5 class="ms-3" style="padding-left: 50px;"><B>PERSONAL
+                INFORMATIONS</B></h5>
+            <hr />
+            <p class="ms-4" style="padding-left: 50px;">Name:
+              <b> {{oneUser.name}}</b>
+            </p>
+            <p class="ms-4" style="padding-left: 50px;">Email:
+              <b> {{oneUser.email}}</b>
+            </p>
+            <p class="ms-4" style="padding-left: 50px;">Phone:
+              <b> {{oneUser.Number}}</b>
+            </p>
+
+            {{! Wallet ComeHere  }}
+          </div>
+
+          <div>
+            <a href="/editProfile">
+              <p
+                class="btn btn-dark w-75"
+                style="margin: 58px;    width: 77%!important;"
+              ><b>EDIT PROFILE</b></p></a>
+
+            <div
+              class="address text-center border border-3"
+              style="display: none; margin: 58px;    width: 77%!important; border-radius:15px"
+            >
+              <form
+                action="/useraddress"
+                method="post"
+                id="submit-address"
+                class="form"
+              >
+
+                <input type="text" id="ID" name="id" value="" hidden />
+                <input
+                  class="mt-3 text-center border"
+                  style="height: 40px;border-radius: 20px;"
+                  type="text"
+                  name="homeaddress"
+                  id="homeaddress"
+                  placeholder="House Name"
+                  required
+                />
+                <input
+                  class="mt-3 text-center border"
+                  style="height: 40px;border-radius: 20px;"
+                  type="text"
+                  name="fullAddress"
+                  id="fullAddress"
+                  placeholder="Street Address "
+                  required
+                />
+                <input
+                  class="mt-3 mb-3 text-center border"
+                  style="height: 40px;border-radius: 20px;"
+                  type="text"
+                  name="town"
+                  id="town"
+                  placeholder=" Town/city"
+                  required
+                />
+                <input
+                  class="mb-3 text-center border"
+                  style="height: 40px;border-radius: 20px;"
+                  type="text"
+                  name="country"
+                  id="country"
+                  placeholder="Country/state"
+                  required
+                />
+                <input
+                  class="mb-3 text-center border"
+                  style="height: 40px;border-radius: 20px;"
+                  type="number"
+                  name="pincode"
+                  id="pincode"
+                  placeholder="PIN Code"
+                  required
+                />
+                <input
+                  class="mt-3 text-center border"
+                  style="height: 40px;border-radius: 20px;"
+                  type="number"
+                  name="phone"
+                  id="phone"
+                  placeholder="Phone Number"
+                  required
+                /><br /><br />
+                <input type="submit" value="SUBMIT" class="btn btn-dark w-75" />
+
+              </form><br />
+            </div>
+          </div>
+
+          <div
+            class=""
+            style="text-align: center; padding-left: 70px; border-color:black;"
+          >
+            {{#each add}}
+              <div
+                class="mt-4 w-75 ms-5 border border-dark"
+                style="border-radius: 10px; "
+              >
+                <span
+                  href=""
+                  onclick="editAddress()"
+                  class="text-dark me-3"
+                  style="margin-left: 200px;"
+                ><i class="fa fa-pencil-square"></i></span>
+
+                <button
+                  onclick="deleteAddress('{{this.id}}')"
+                  class="text-danger"
+                ><i class="fa fa-trash"></i></button>
+
+                <h6 class="ms-5 pt-2">{{this.homeaddress}}</h6>
+                <h6 class="ms-5">{{this.fullAddress}}</h6>
+                <h6 class="ms-5 pb-2">{{this.town}}</h6>
+                <h6 class="ms-5 pb-2">{{this.country}}</h6>
+                <h6 class="ms-5 pb-2">{{this.pincode}}</h6>
+                <h6 class="ms-5 pb-2">{{this.phone}}</h6>
+                <div
+                  class="changeAddress text-center border border-3"
+                  style="display: none;"
+                >
+                  <form action="/edit-user-address/{{this._id}}" method="post">
+                    <input
+                      class="mt-3 text-center border"
+                      style="height: 40px;border-radius: 20px;"
+                      type="text"
+                      name="houseName"
+                      value="{{this.homeaddress}}"
+                    />
+                    <input
+                      class="mt-3 text-center border"
+                      style="height: 40px;border-radius: 20px;"
+                      type="text"
+                      name="address"
+                      value="{{this.fullAddress}}"
+                    />
+                    <input
+                      class="mb-3 text-center border"
+                      style="height: 40px;border-radius: 20px;"
+                      type="text"
+                      name="town"
+                      value="{{this.town}}"
+                    />
+                    <input
+                      class="mb-3 text-center border"
+                      style="height: 40px;border-radius: 20px;"
+                      type="text"
+                      name="country"
+                      value="{{this.country}}"
+                    />
+                    <input
+                      class="mb-3 text-center border"
+                      style="height: 40px;border-radius: 20px;"
+                      type="number"
+                      name="pincode"
+                      value="{{this.pincode}}"
+                    />
+                    <input
+                      class="mb-3 text-center border"
+                      style="height: 40px;border-radius: 20px;"
+                      type="number"
+                      name="phone"
+                      value="{{this.phone}}"
+                    />
+                    <input type="submit" class="btn btn-dark w-75" />
+                  </form><br />
+                </div>
+              </div>
+            {{/each}}
+
+
+          </div><br />
+        </div><br />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+

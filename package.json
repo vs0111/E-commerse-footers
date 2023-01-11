@@ -1,0 +1,30 @@
+{
+  "name": "footwear",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "hbs": "^4.2.0",
+    "http-errors": "~1.6.3",
+    "moment": "^2.29.4",
+    "mongodb": "^4.12.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.20",
+    "object-id": "^0.0.1",
+    "pagination": "^0.4.6",
+    "paypal-rest-sdk": "^1.8.1",
+    "razorpay": "^2.8.4",
+    "sweetalert2": "^11.4.8",
+    "twilio": "^3.83.3"
+  }
+}

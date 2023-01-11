@@ -1,0 +1,54 @@
+
+<section>
+        <div class="container mt-5">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-4 border rounded" style="background-color:rgb(255, 255, 255);">
+                    <div>
+                        <h2 class=" text-center mt-4" style="color: black;"><b>LOGIN</b></h2>
+                    </div>
+                    {{#if blockErr}}
+                    <p class="error text-danger">{{blockErr}}</p>
+                    {{/if}}
+                    {{#if Err}}
+                    <p class="error text-danger" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">{{Err}}</p>
+                    {{/if}}
+                    <form action="/login"  method="post">
+                        <div class="form-group mt-4">
+                            <input type="text" class="form-control" name="Email" id="email" placeholder="Enter email" required>
+                            <span id="email-error"></span>
+                        </div>
+                        <div class="form-group mt-4">
+                            <input type="password" class="form-control" name="Password"  id="password" placeholder="Password">
+                             <span id="password-error"></span>
+                           <div class="mt-3"> <a href="/forgot-password"><u>Forgotpassword</u></a></div>
+
+                        </div>
+                       
+                       
+                       
+                       
+                               
+                            {{!-- <div class="item line"></div> --}}
+                       
+                        <div class=" justify-content-center d-flex mb-4 mt-3">
+                            <button type="submit" class="btn btn-dark w-100">Login</button>
+                        </div>
+                         </form>
+                        <h6 class="text-center"><b>OR</b></h6><br>
+                      <a href="/otp-login"><button class="btn btn-primary w-100" >Request <b>OTP</b></button></a><br><br>
+                       <div class="group mb-4 ">
+                            <div class="item line"></div>
+                            <div class="item text text-dark">Don't have an account? 
+                               <a href="/signup">Signup</a>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                       
+
+                        
+                   
+
+

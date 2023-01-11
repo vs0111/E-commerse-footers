@@ -1,0 +1,128 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <div class="section-title">
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 ml-5">
+
+            <ul class="filter__controls">
+
+                <li class="active" data-filter="*">All</li>
+                <li data-filter=".WOMENS">Women’s</li>
+                <li data-filter=".MENS">Men’s</li>
+                <li data-filter=".KIDS">Kid’s</li>
+                <li data-filter=".SPORTS">Sports</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row property__gallery">
+        {{#each products}}
+        <div class="col-lg-3 col-md-4 col-sm-6 mix {{this.category}}">
+            <div class="product__item">
+                <div class="product__item__pic set-bg" data-setbg="/product-images/{{this._id}}1.jpg">
+                    {{!-- <div class="label new">New</div> --}}
+                    <ul class="product__hover">
+                        <li><a href="/product-images/{{this._id}}1.jpg" class="image-popup"><span
+                                    class="arrow_expand"></span></a></li>
+                        <li><a><span class="icon_heart_alt" id="{{this._id}}"
+                                    onclick="addTowishlist('{{this._id}}')"></span></a></li>
+                        <li><a><span class="icon_bag_alt" onclick="addToCart('{{this._id}}')"></span></a></li>
+                    </ul>
+                </div>
+                <div class="product__item__text">
+                    <h6><a href="/product/{{this._id}}">{{this.name}}</a></h6>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="product__price">{{#if actualPrice}}₹ {{this.Amount}}<span> <del>₹ {{this.actualPrice}}</del></span>{{else}}₹ {{this.Amount}}{{/if}}
+                      {{#if proOfferPercentage}}
+                        <p class="text-secondary">{{proOfferPercentage}}<small>%off</small></p>
+                        {{/if}}
+                         {{#if catOfferPercentage}}
+                         <p class="text-secondary">{{catOfferPercentage}}<small>%off</small></p>
+                         {{/if}}
+                                
+                    </div>
+                     
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+
+<script>
+    function addToCart(proId) {
+        $.ajax({
+            url: '/addToCart/' + proId,
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    let count = $('#cart-count,#cart-count2').html()
+                    count = parseInt(count) + 1
+                    $("#cart-count,#cart-count2").html(count)
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Added To Cart',
+                        showConfirmButton: false,
+                        timer: 1500
+
+                    })
+                } else {
+                    location.href = '/login'
+
+                }
+            }
+        })
+    }
+
+
+    function addTowishlist(proId) {
+        console.log('wishlist function called')
+        $.ajax({
+            url: '/addToWishlist/' + proId,
+            method: 'get',
+            success: (response) => {
+                console.log(response)
+
+
+
+                if (response.add) {
+                    let count = $('#wish-count').html()
+                    count = parseInt(count) + 1
+                    $('#wish-count').html(count)
+                    swal.fire({
+                        icon: "success",
+                        title: "Item Added To wishlist",
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+
+                } else if (response.remove) {
+                    let count = $('#wish-count').html()
+                    count = parseInt(count) - 1
+                    $('#wish-count').html(count)
+                    swal.fire({
+                        icon: "success",
+                        title: "Item Removed from wishlist",
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                } else {
+                    location.href = '/login'
+                }
+
+            }
+        })
+    }
+
+
+</script>

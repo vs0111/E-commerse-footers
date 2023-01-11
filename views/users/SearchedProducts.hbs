@@ -1,0 +1,174 @@
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+{{#if products}}
+<section class="product spad">
+       <div class="container">
+       
+     
+        {{!-- <h2>{{oneCat.category}}</h2> --}}
+      
+       <div class="row property__gallery">
+        {{#each products}}
+        <div class="col-lg-3 col-md-4 col-sm-6 mix {{this.category}}">
+            <div class="product__item">
+                <div class="product__item__pic set-bg" data-setbg="/product-images/{{this._id}}1.jpg">
+                    {{!-- <div class="label new">New</div> --}}
+                    <ul class="product__hover">
+                        <li><a href="/product-images/{{this._id}}1.jpg" class="image-popup"><span
+                                    class="arrow_expand"></span></a></li>
+                        <li><a><span class="icon_heart_alt" id="{{this._id}}"
+                                    onclick="addTowishlist('{{this._id}}')"></span></a></li>
+                        <li><a><span class="icon_bag_alt" onclick="addToCart('{{this._id}}')"></span></a></li>
+                    </ul>
+                </div>
+                <div class="product__item__text">
+                    <h6><a href="/product/{{this._id}}">{{this.name}}</a></h6>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="product__price">{{#if actualPrice}}₹ {{this.Amount}}<span> <del>₹ {{this.actualPrice}}</del></span>{{else}}₹ {{this.Amount}}{{/if}}
+                      {{#if proOfferPercentage}}
+                        <p class="text-secondary">{{proOfferPercentage}}<small>%off</small></p>
+                        {{/if}}
+                                
+                    </div>
+                     
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    </div>
+</section>
+{{else}}
+<div class="container">
+   <a href="/searchProduct"> <img style="width:100% ;height:500px ;" src="https://resources.nicepage.com/853/54853/404.png" alt=""></a>
+    {{!-- <h1>CART EMPTY</h1> --}}
+</div>
+{{/if}}
+
+
+<script src="/public/javascripts/script.js"></script>
+{{!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+
+ {{!-- <script>
+   // function addToCart(proId) {
+   //     console.log("entered")
+    //    $.ajax({
+    //        url: '/add-to-cart/' + proId,
+    //        method: 'get',
+    //        success: (response) => {
+     //           console.log(response);
+
+   //             if (response.status) {
+          //          let count = $('#cart-Count').html()
+           //         count = parseInt(count) + 1
+           //         swal("ADD TO CART", {
+             //           icon: "success",
+                    });
+             //       $('#cart-Count').html(count)
+
+
+                }
+
+            }
+        })
+    }
+
+</script>  --}}
+
+<script>
+    function addToCart(proId) {
+        $.ajax({
+            url: '/addToCart/' + proId,
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    let count = $('#cart-count,#cart-count2').html()
+                    count = parseInt(count) + 1
+                    $("#cart-count,#cart-count2").html(count)
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Added To Cart',
+                        showConfirmButton: false,
+                        timer: 1500
+
+                    })
+                } else {
+                    location.href = '/user-login'
+
+                }
+            }
+        })
+    }
+
+
+    function addTowishlist(proId) {
+        console.log('wishlist function called')
+        $.ajax({
+            url: '/addToWishlist/' + proId,
+            method: 'get',
+            success: (response) => {
+                console.log(response)
+
+
+
+                if (response.add) {
+                    let count = $('#wish-count').html()
+                    count = parseInt(count) + 1
+                    $('#wish-count').html(count)
+                    swal.fire({
+                        icon: "success",
+                        title: "Item Added To wishlist",
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+
+                } else if (response.remove) {
+                    let count = $('#wish-count').html()
+                    count = parseInt(count) - 1
+                    $('#wish-count').html(count)
+                    swal.fire({
+                        icon: "success",
+                        title: "Item Removed from wishlist",
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                } else {
+                    location.href = '/user-login'
+                }
+
+            }
+        })
+    }
+
+
+</script>
+
+<script src="/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+<script src="/assets/js/mixitup.min.js"></script>
+<script src="/assets/js/jquery.countdown.min.js"></script>
+<script src="/assets/js/jquery.slicknav.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/jquery.nicescroll.min.js"></script>
+<script src="/assets/js/main.js"></script>

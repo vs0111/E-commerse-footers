@@ -1,0 +1,91 @@
+<!-- Header -->
+<div class="header bg-gradient-primary py-7 py-lg-5">
+    <div class="container">
+        <div class="header-body text-center ">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6">
+                    <h1 class="text-white">Add Category</h1>
+                    <p class="text-lead text-light"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container pb-5">
+    <!-- Table -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card bg-secondary shadow border-0">
+                <div class="card-body px-lg-5 py-lg-5">
+                    <form action="/admin/add-category" method="post">
+                        {{#if error}}
+                            <h5 class="alert alert-danger">
+                               {{error}}
+                            </h5>
+                          {{/if}}
+                       
+                        <div class="row mb-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label for="name">Category Name</label>
+                                    <input class="form-control" id="name" onkeyup="validateName()" type="text" name="name" required>
+                                </div>
+                                <span id="name-error"></span>
+                            </div>
+                        </div>
+                        
+
+
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mt-3 mb-4">Add Category</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var nameError = document.getElementById('name-error');
+    
+    
+    function validateName() {
+        var name = document.getElementById('name').value.trim();
+        console.log(name);
+        if (name.length == 0) {
+            nameError.innerHTML = 'Name is Required';
+            nameError.style.color = 'red'
+            return false;
+        }
+        if (!name.match(/^[A-Za-z ]*$/)) {
+            nameError.innerHTML = 'Write a FullName';
+            nameError.style.color = 'red'
+            return false;
+        }
+        if (name.length < 3) {
+            nameError.innerHTML = 'Enter minimum 3 charactors';
+            nameError.style.color = 'red'
+            return false;
+        }
+        nameError.innerHTML = 'Name is valid';
+        nameError.style.color = 'green'
+        return true;
+    }
+    
+    jQuery_1_7_1(document).on("submit", "form", function (e) {
+        if (validateName()) {
+        } else {
+            e.preventDefault();
+            alert('invalid data')
+            return false;
+        }
+    })
+</script>

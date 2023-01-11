@@ -1,0 +1,91 @@
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+        <li><a href="/searchProduct" <span class="icon_search search-switch"></span></a></li>
+            <li><a href="/wishlist"><span class="icon_heart_alt"></span>
+                <div class="tip">{{wishCount}}</div>
+            </a></li>
+            <li><a href="/cart"><span class="icon_bag_alt"></span>
+                <div class="tip" id="cart-count2">{{cartCount}}</div>
+            </a></li>
+        </ul>
+        <div class="offcanvas__logo">
+            <!-- TitleImage -->
+                        <h2 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Footers</b>    </h2>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            {{#if users}}
+            <a href="#"><b><big>{{users.name}}</big></b></a>
+            <a href="/logout">LOGOUT</a>
+            {{else}}
+             <a href="/login">Login</a>
+            <a href="/signup">Register</a>
+            {{/if}}
+
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        {{!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> --}}
+                        <h2 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Footers</b>    </h2>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class=""><a href="/">HOME</a></li>
+                          
+                            <li><a href="/shope">SHOP</a></li>
+                           
+                            <li><a href="/profile">PROFILE</a></li>
+                            <li><a href="/orderHistory">ORDERS</a></li>
+                            <li><a href="/contact">CONTACT</a></li>
+                           
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right">
+                        <div class="header__right__auth">
+                            {{#if users}}
+                            <a href="#"><big><b>{{users.name}}</b></big></a>
+                            <a href="/logout">LOGOUT</a>
+                            {{else}}
+                             <a href="/login">Login</a>
+                            <a href="/signup">Register</a>
+                            {{/if}}
+
+
+                        </div>
+                        <ul class="header__right__widget"><br>
+                            <li><a href="/searchProduct" <span class="icon_search search-switch"></span></a></li>
+                            <li><a href="/wishlist"><span class="icon_heart_alt"></span>
+                                <div class="tip" id="wish-count">{{wishCount}}</div>
+                            </a></li>
+                            <li><a href="/cart"><span class="icon_bag_alt"></span>
+                                <div class="tip" id="cart-count">{{cartCount}}</div>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
