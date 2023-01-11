@@ -386,7 +386,7 @@ module.exports = {
         order["payment-method"] === "paypal" ||
         order["payment-method"] === "wallet"
           ? "placed"
-          : "pending";
+          : {pending:true};
       let orderObj = {
         deliveryDetails: {
           fisrtName: order.fname,
