@@ -81,13 +81,19 @@
 
                             <td class="align-middle">{{this.totalAmount}}</td>
                             <td class="align-middle ">{{this.paymentMethod}}</td>
+                            {{#if this.status.Pending}}
+                             <td class="align-middle">pending</td>
+                             {{else}}
                             <td class="align-middle">{{this.status}}</td>
+                            {{/if}}
                             <td>
                                 {{#if this.is_Cancelled}}
                                 <p class="text-danger font-weight-bold text-center">Cancelled Successfully</p>
                                 {{else}}
                                 {{#if this.is_delivered}}
                                 <p class="text-success font-weight-bold text-center">Delivered Successfully</p>
+                                {{else}}
+                                {{#if this.status.pending}}
                                 {{else}}
                                 <form action="/admin/changeOrderStatus" method="post">
                                     <input type="text" name="OrderId" value="{{this._id}}" hidden>
@@ -104,6 +110,7 @@
                           
                             
                                 </form>
+                                {{/if}}
                                 {{/if}}
                                 {{/if}}
                             </td>
