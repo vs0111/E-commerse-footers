@@ -58,7 +58,7 @@ router.post('/login', forLogin, userController.userLoginPost);
 /* GET&POST user Signup */
 router.get('/signup', forLogin, userController.userSignGet)
 router.post('/signup', forLogin, userController.userSignPost);
-router.get('/shope', userController.userShop);
+router.get('/shop', userController.userShop);
 router.get('/product/:id', userController.userProductPage);
 router.get('/cart', verifyLogin, userController.viewCart)
 router.get('/addToCart/:id', verifyLogin, userController.addToCart)

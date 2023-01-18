@@ -26,9 +26,14 @@
                     <ul class="product__hover">
                         <li><a href="/product-images/{{this._id}}1.jpg" class="image-popup"><span
                                     class="arrow_expand"></span></a></li>
-                        <li><a><span class="icon_heart_alt" id="{{this._id}}"
+                                    {{#if wishlist}}
+                        <li><a style="background-color: red;"><span class="icon_heart_alt" id="{{this._id}}"
                                     onclick="addTowishlist('{{this._id}}')"></span></a></li>
-                        <li><a><span class="icon_bag_alt" onclick="addToCart('{{this._id}}')"></span></a></li>
+                                    {{else}}
+                                    <li><a ><span class="icon_heart_alt" id="{{this._id}}"
+                                    onclick="addTowishlist('{{this._id}}')"></span></a></li>
+                                    {{/if}}
+                        <li><a ><span class="icon_bag_alt" onclick="addToCart('{{this._id}}')"></span></a></li>
                     </ul>
                 </div>
                 <div class="product__item__text">
@@ -76,6 +81,7 @@
                         timer: 1500
 
                     })
+                     window.location.reload()
                 } else {
                     location.href = '/login'
 

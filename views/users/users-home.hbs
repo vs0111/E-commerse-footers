@@ -207,6 +207,7 @@ $.ajax({
             timer: 1500
 
 })
+ window.location.reload()
  }else{
             location.href='/login'
 
@@ -216,38 +217,44 @@ $.ajax({
 }
 
 
-function addTowishlist(proId) {
-    console.log('wishlist function called')   
-    $.ajax({
-        url: '/addToWishlist/' + proId,
-        method: 'get',
-        success: (response) => {
-            console.log(response)
-            if(response.status){
-                let count = $('#wish-count').html()
-                count = parseInt(count) + 1
-                $('#wish-count').html(count)
-                swal.fire({
-                    icon: "success",
-                    title: "Item Added To wishlist",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+  function addTowishlist(proId) {
+        console.log('wishlist function called')
+        $.ajax({
+            url: '/addToWishlist/' + proId,
+            method: 'get',
+            success: (response) => {
+                console.log(response)
 
-            }else{
-                let count = $('#wish-count').html()
-                count = parseInt(count) - 1
-                $('#wish-count').html(count)
-                swal.fire({
-                    icon: "success",
-                    title: "Item Removed from wishlist",
-                    showConfirmButton: false,
-                    timer: 1000
-                })
+
+
+                if (response.add) {
+                    let count = $('#wish-count').html()
+                    count = parseInt(count) + 1
+                    $('#wish-count').html(count)
+                    swal.fire({
+                        icon: "success",
+                        title: "Item Added To wishlist",
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+
+                } else if (response.remove) {
+                    let count = $('#wish-count').html()
+                    count = parseInt(count) - 1
+                    $('#wish-count').html(count)
+                    swal.fire({
+                        icon: "success",
+                        title: "Item Removed from wishlist",
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                } else {
+                    location.href = '/login'
+                }
+
             }
-        }
-    })
-}
+        })
+    }
 
 
  </script>

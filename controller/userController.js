@@ -1,6 +1,8 @@
 var express = require("express");
 // const { response } = require("../app");
 var router = express.Router();
+var objectId = require("mongodb").ObjectId;
+
 // const adminHelpers = require("../helpers/admin-helpers");
 let productHelper = require("../helpers/product-helpers");
 let usersHelpers = require("../helpers/users-helpers");
@@ -80,10 +82,10 @@ const userController = {
     usersHelpers.doSignup(req.body).then((response) => {
       if (response.status) {
         req.session.error = "Email Alredy Submited";
-        res.redirect("/user-signup");
+        res.redirect("/signup");
       } else if (response.pwNotSame) {
         req.session.passError = "Password Not Match";
-        res.redirect("/user-signup");
+        res.redirect("/signup");
       } else {
         res.redirect("/login");
       }
@@ -103,7 +105,17 @@ const userController = {
     productHelper.startProductOffer(todayDate);
     productHelper.startCategoryOffer(todayDate);
     productHelper.getAllProductsUser().then((products) => {
-    res.render("users/users-shop", { products, users, cartCount, wishCount});
+    console.log(products);
+    const userId = req.session?.user?._id
+
+      let user = products.whishlist?.findIndex((id)=> id.user ==  userId)
+      console.log(user);
+      if(user != -1 && user != undefined ){
+        res.render("users/users-shop", { products, users, cartCount, wishCount,wishlist:true});
+      }else{
+        res.render("users/users-shop", { products, users, cartCount, wishCount,wishlist:false});
+
+      }
   });
 },
    
