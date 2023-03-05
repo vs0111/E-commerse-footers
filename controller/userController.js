@@ -359,15 +359,29 @@ const userController = {
     res.redirect("/orderHistory");
   },
 
-  otpMobileGet: (req, res) => {
+  otpMobileGet:async(req, res) => {
+    let cartCount = 0;
+    let wishCount = 0;
+    let users = req.session.user;
+    if (req.session.user) {
+      cartCount = await usersHelpers.getCartCount(req.session.user._id);
+      wishCount = await usersHelpers.getWishlistCount(req.session.user._id);
+    }
+    
     let noUserErr = req.session.noUserErr;
     let blockErr = req.session.blockErr;
-    res.render("users/otp-login", { noUserErr, blockErr, validation: true });
+    res.render("users/otp-login", { noUserErr, blockErr, validation: true, cartCount,wishCount });
     req.session.noUserErr = false;
     req.session.blockErr = false;
   },
 
-  otpMobilePost: (req, res) => {
+  otpMobilePost:async (req, res) => {
+    let cartCount = 0;
+    let wishCount = 0;
+    if (req.session.user) {
+      cartCount = await usersHelpers.getCartCount(req.session.user._id);
+      wishCount = await usersHelpers.getWishlistCount(req.session.user._id);
+    }
     usersHelpers.checkMobile(req.body).then((response) => {
       if (response.blocked) {
         req.session.blockErr = "user is temporarily blocked";
@@ -381,15 +395,16 @@ const userController = {
           .services(servicesID)
           .verifications.create({ to: `+91${req.body.phone}`, channel: "sms" })
           .then((response) => {
-            res.render("users/otp", { phone });
+            res.render("users/otp", { phone,cartCount,wishCount });
           });
       }
     });
   },
 
-  otpCodeGet: (req, res) => {
+  otpCodeGet:async (req, res) => {
+   
     let otpErr = req.session.invalidOtpErr;
-    res.render("users/otp", { otpErr });
+    res.render("users/otp", { otpErr,cartCount,wishCount });
     req.session.invalidOtpErr = false;
   },
 
